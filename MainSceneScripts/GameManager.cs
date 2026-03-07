@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+
+    [SerializeField] private List<GameObject> obstacles = new List<GameObject>();
+
+    private int index;
+
+    private PlayerController playerController;
+    private BackGroundMoving backGroundMoving;
+
+    void Start()
+    {
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        backGroundMoving = GameObject.Find("BackGround").GetComponent<BackGroundMoving>();
+
+        if(playerController.isGameOver == false && backGroundMoving.isGameEnd == false)
+            StartCoroutine(SpawnerCountDown());
+    }
+
+    IEnumerator SpawnerCountDown()
+    {
+
+        while(playerController.isGameOver == false && backGroundMoving.isGameEnd == false)
+        {
+            Spawner();
+            yield return new WaitForSeconds(3);
+        }
+
+    }
+
+    void Spawner()
+    {
+        index = Random.Range(0, obstacles.Count);
+
+        float pozY = 1;
+
+        if(obstacles[index].gameObject.CompareTag("Abyss"))
+            pozY = -0.16f;
+        if(obstacles[index].gameObject.CompareTag("Log"))
+            pozY = 0.7f;
+        if(obstacles[index].gameObject.CompareTag("Rock"))
+            pozY = 0.42f;
+        if(obstacles[index].gameObject.CompareTag("Reeds"))
+            pozY = 0.8f;
+
+        
+            Vector2 spawnPoz = new Vector2(30, pozY);
+
+
+        Instantiate(obstacles[index], spawnPoz, Quaternion.identity);
+
+    }
+
+}
