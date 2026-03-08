@@ -7,21 +7,23 @@ public class ManagerUI : MonoBehaviour
 {
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitToMenuButton;
+    [SerializeField] private Button exitToMenuButtonResume;
     [SerializeField] private Button resumeButton;
 
-    [SerializeField] private TextMeshProUGUI gameOverText;
-    [SerializeField] private TextMeshProUGUI pauseText;
     [SerializeField] private GameObject escapeMenu;
     [SerializeField] private GameObject gameOverMenu;
 
+
+    public bool isGamePaused = false;
+
     private PlayerController playerController;
+    private BackGroundMoving backGroundMoving;
 
     void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
-        if(playerController.isGameOver == true)
-            gameOverMenu.gameObject.SetActive(true);
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        backGroundMoving = GameObject.Find("BackGround").GetComponent<BackGroundMoving>();
 
         AddListenerToButtons();
         
@@ -29,14 +31,23 @@ public class ManagerUI : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(!isGamePaused && backGroundMoving.isGameEnd == false && Input.GetKeyDown(KeyCode.Escape))
+        {
             escapeMenu.gameObject.SetActive(true);
+            isGamePaused = true;
+        }
+            
+        
+        if(playerController.isGameOver == true && !isGamePaused && backGroundMoving.isGameEnd == false)
+            gameOverMenu.gameObject.SetActive(true);
+
     }
 
     void AddListenerToButtons()
     {
         restartButton.onClick.AddListener(RestartButton);
         exitToMenuButton.onClick.AddListener(ExitButton);
+        exitToMenuButtonResume.onClick.AddListener(ExitButton);
         resumeButton.onClick.AddListener(ResumeButton);
     }
 
@@ -49,11 +60,17 @@ public class ManagerUI : MonoBehaviour
 
     void ExitButton()
     {
-          SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
     }
 
     void ResumeButton()
     {
+        if(playerController.isGameOver == false && backGroundMoving.isGameEnd == false)
+        {
         escapeMenu.gameObject.SetActive(false);
+        isGamePaused = false;
+        }
     }
 }

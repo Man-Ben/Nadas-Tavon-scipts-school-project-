@@ -8,26 +8,32 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> obstacles = new List<GameObject>();
 
     private int index;
+    public int difficulty;
 
     private PlayerController playerController;
     private BackGroundMoving backGroundMoving;
+    private ManagerUI managerUI;
 
     void Start()
     {
+
+        difficulty = GameData.difficulty;
+
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         backGroundMoving = GameObject.Find("BackGround").GetComponent<BackGroundMoving>();
+        managerUI = GameObject.Find("UIManager").GetComponent<ManagerUI>();
 
-        if(playerController.isGameOver == false && backGroundMoving.isGameEnd == false)
+        if(playerController.isGameOver == false && backGroundMoving.isGameEnd == false && managerUI.isGamePaused == false)
             StartCoroutine(SpawnerCountDown());
     }
 
     IEnumerator SpawnerCountDown()
     {
 
-        while(playerController.isGameOver == false && backGroundMoving.isGameEnd == false)
+        while(playerController.isGameOver == false && backGroundMoving.isGameEnd == false && managerUI.isGamePaused == false)
         {
             Spawner();
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(difficulty);
         }
 
     }

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 using UnityEditor;
 
-public class UIManager : MonoBehaviour
+public class MenuScript : MonoBehaviour
 {
 
 
@@ -18,7 +18,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button hardButton;
     [SerializeField] private Button backButton;
 
-    public int difficultyLevel;
 
 
     void Start()
@@ -37,7 +36,7 @@ public class UIManager : MonoBehaviour
         mediumButton.onClick.AddListener(() => DifficultyButtons(2));
         hardButton.onClick.AddListener(() => DifficultyButtons(1));
     }
-
+    
 
     void PlayButton()
     {
@@ -67,7 +66,7 @@ public class UIManager : MonoBehaviour
     void DifficultyButtons(int difficulty)
     {
 
-        difficultyLevel = difficulty;
+        GameData.difficulty = difficulty;
 
         SceneManager.LoadScene("Main Scene");
 

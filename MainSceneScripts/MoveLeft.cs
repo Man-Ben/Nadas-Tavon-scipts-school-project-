@@ -7,22 +7,30 @@ public class MoveLeft : MonoBehaviour
 
     private PlayerController playerController;
     private BackGroundMoving backGroundMoving;
-
+    private ManagerUI managerUI;
     private Rigidbody2D obstacleRB;
+    
 
     void Start()
     {
+
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         backGroundMoving = GameObject.Find("BackGround").GetComponent<BackGroundMoving>();
+        managerUI = GameObject.Find("UIManager").GetComponent<ManagerUI>();
 
         obstacleRB = GetComponent<Rigidbody2D>();
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if(playerController.isGameOver == false && backGroundMoving.isGameEnd == false)
+        if(playerController.isGameOver == false && backGroundMoving.isGameEnd == false && managerUI.isGamePaused == false)
             MoveLeftMethod();
+        else
+        {
+            obstacleRB.linearVelocity = Vector2.zero;
+            obstacleRB.angularVelocity = 0f;
+        }
     }
 
     void MoveLeftMethod()
@@ -30,7 +38,7 @@ public class MoveLeft : MonoBehaviour
 
         speed = 0.07f;
 
-    if(playerController.isGameOver == false && backGroundMoving.isGameEnd == false)
+    if(playerController.isGameOver == false && backGroundMoving.isGameEnd == false && managerUI.isGamePaused == false)
         obstacleRB.AddForce(Vector2.left * speed, ForceMode2D.Impulse);
 
     }
