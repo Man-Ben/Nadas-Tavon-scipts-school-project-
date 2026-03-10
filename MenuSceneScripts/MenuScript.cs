@@ -32,9 +32,9 @@ public class MenuScript : MonoBehaviour
         startButton.onClick.AddListener(PlayButton);
         backButton.onClick.AddListener(BackButton);
         exitButton.onClick.AddListener(ExitButton);
-        easyButton.onClick.AddListener(() => DifficultyButtons(3));
-        mediumButton.onClick.AddListener(() => DifficultyButtons(2));
-        hardButton.onClick.AddListener(() => DifficultyButtons(1));
+        easyButton.onClick.AddListener(() => DifficultyButtons(2.2f));
+        mediumButton.onClick.AddListener(() => DifficultyButtons(1.5f));
+        hardButton.onClick.AddListener(() => DifficultyButtons(1.27f));
     }
     
 
@@ -63,7 +63,7 @@ public class MenuScript : MonoBehaviour
         menuButtons.gameObject.SetActive(true);
     }
 
-    void DifficultyButtons(int difficulty)
+    void DifficultyButtons(float difficulty)
     {
 
         GameData.difficulty = difficulty;

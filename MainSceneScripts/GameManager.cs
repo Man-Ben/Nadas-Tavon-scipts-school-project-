@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> obstacles = new List<GameObject>();
 
     private int index;
-    public int difficulty;
+    public float difficulty;
 
     private PlayerController playerController;
     private BackGroundMoving backGroundMoving;

@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private float jumpForce = 15;
-    [SerializeField] private float gravityModifier = 1;
+    [SerializeField] private float jumpForce = 12;
+    [SerializeField] private float gravityModifier = 1f;
 
     [SerializeField] private bool onGround = true;
 
@@ -38,8 +38,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Jump();
+
         AnimationPlayer();
+        Jump();
+        
     }
 
     void Jump()
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour
             playersRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             audioClip.PlayOneShot(jumpSound, 0.5f);
             onGround = false;
-
+            animator.SetBool("isRunning", false);
         }
         
     }
@@ -59,8 +61,8 @@ public class PlayerController : MonoBehaviour
     void AnimationPlayer()
     {
 
-        if(managerUI.isGamePaused == false && onGround && !isGameOver && backGroundMoving.isGameEnd == false)
-            animator.Play("Running");
+        if(managerUI.isGamePaused == false && !isGameOver && backGroundMoving.isGameEnd == false)
+            animator.SetBool("isRunning", true);
 
     }
 
@@ -79,6 +81,7 @@ public class PlayerController : MonoBehaviour
             {
                 isGameOver = true;
                 ground.gameObject.SetActive(false);
+                animator.SetBool("isRunning", false);
             }
             else
                 isGameOver = true;

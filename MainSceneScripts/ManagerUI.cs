@@ -16,6 +16,8 @@ public class ManagerUI : MonoBehaviour
 
     public bool isGamePaused = false;
 
+    private Animator animator;
+
     private PlayerController playerController;
     private BackGroundMoving backGroundMoving;
 
@@ -25,21 +27,28 @@ public class ManagerUI : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         backGroundMoving = GameObject.Find("BackGround").GetComponent<BackGroundMoving>();
 
+        animator = GameObject.Find("Player").GetComponent<Animator>();
+
         AddListenerToButtons();
         
     }
 
     void Update()
     {
-        if(!isGamePaused && backGroundMoving.isGameEnd == false && Input.GetKeyDown(KeyCode.Escape))
+        if(!isGamePaused && playerController.isGameOver == false && backGroundMoving.isGameEnd == false && Input.GetKeyDown(KeyCode.Escape))
         {
             escapeMenu.gameObject.SetActive(true);
             isGamePaused = true;
+            animator.SetBool("isRunning", false);
         }
             
         
         if(playerController.isGameOver == true && !isGamePaused && backGroundMoving.isGameEnd == false)
+        {
+            animator.SetBool("isRunning", false);
             gameOverMenu.gameObject.SetActive(true);
+        }
+            
 
     }
 
