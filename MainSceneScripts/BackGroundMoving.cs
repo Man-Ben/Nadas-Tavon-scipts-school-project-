@@ -1,3 +1,8 @@
+/*
+This script manages the background's movement.
+Stops when the player dies, presses the Esc key or the game ends.
+*/
+
 using UnityEngine;
 
 public class BackGroundMoving : MonoBehaviour
@@ -25,6 +30,11 @@ public class BackGroundMoving : MonoBehaviour
         if(playerController.isGameOver == false && !isGameEnd && managerUI.isGamePaused == false)
             transform.Translate(Vector3.right * Time.deltaTime * backGroundSpeed);
     }
+
+    /*
+    Checks if the moving background collides with the "End" point.
+    If so, the game ends.
+    */
 
     void OnCollisionEnter(Collision collision)
     {
