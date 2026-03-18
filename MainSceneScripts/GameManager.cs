@@ -1,6 +1,6 @@
 /*
 This script spawns the obstacles at a given interval and position.
-Stops spawning when the player dies, presses the Esc key or the game ends.
+Stops spawning when the player dies, presses the Esc key or when the game ends.
 */
 
 
