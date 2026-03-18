@@ -1,3 +1,9 @@
+/*
+This script spawns the obstacles at a given interval and position.
+Stops spawning when the player dies, presses the Esc key or the game ends.
+*/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
