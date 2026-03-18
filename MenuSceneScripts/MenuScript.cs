@@ -1,3 +1,10 @@
+/*
+This is the main manager script for the main menu.
+It handles the UI, loads the main scene, and sets the game's difficulty 
+according to the player's preference.
+*/
+
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -27,6 +34,10 @@ public class MenuScript : MonoBehaviour
 
     }
 
+    /*
+    This method adds a listener to all attached buttons, so they respond to user clicks.
+    */
+
     void AddListenerToButtons()
     {
         startButton.onClick.AddListener(PlayButton);
@@ -37,7 +48,11 @@ public class MenuScript : MonoBehaviour
         hardButton.onClick.AddListener(() => DifficultyButtons(1.27f));
     }
     
-
+    /*
+    When the player presses the PlayButton, the Play and Exit button disappears,
+    and the Difficulty buttons along with the Back button appear.
+    */
+    
     void PlayButton()
     {
 
@@ -45,6 +60,10 @@ public class MenuScript : MonoBehaviour
         menuButtons.gameObject.SetActive(false);
 
     }
+
+    /*
+    Quits the application when the button is pressed.
+    */
 
     void ExitButton()
     {
@@ -57,11 +76,21 @@ public class MenuScript : MonoBehaviour
 
     }
 
+
+    /*
+    Performs the opposite action of the PlayButton() method.
+    */
+
     void BackButton()
     {
         difficultyButtons.gameObject.SetActive(false);
         menuButtons.gameObject.SetActive(true);
     }
+
+    /*
+    Called when the player presses one of the Difficulty buttons.
+    Assigns the difficulty variable in the GameData class, then loads the main scene.
+    */
 
     void DifficultyButtons(float difficulty)
     {
