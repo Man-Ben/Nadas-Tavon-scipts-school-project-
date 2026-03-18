@@ -1,3 +1,9 @@
+/*
+This script manages the audio of our game.
+Stops the music when the player dies or the game ends.
+*/
+
+
 using UnityEngine;
 
 public class AudioController : MonoBehaviour
