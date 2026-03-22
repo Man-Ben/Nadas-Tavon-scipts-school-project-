@@ -1,3 +1,10 @@
+/*
+This script is responsible for the Main Scene's UI.
+When the player dies, the Restart Button and the Exit To Main Menu button will appear.
+When the player presses the Esc key, the Resume Button and the Exit Button will appear.
+In both cases, the algorithm stops spawning game objects, animations and some input interactions.
+*/
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
