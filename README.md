@@ -40,6 +40,6 @@ You can create anything, just make something fabulous by Monday."
 So, I went to my teammates. At first, we didn't know what we would do. As a joke, I said that I would make a game. 
 I think my tone didn't carry enough sarcasm, because my teammates took it seriously. I created the project design, and then the work began.
 We had only three days. It felt like a hackathon, and I was the only one who could use the Unity Engine and write code.
-The girl who was the 2D artist finished the sprites later that day, so I could create the prototype. At the beginning, nothing worked.
+The 2D artist finished the sprites later that day, so I could create the prototype. At the beginning, nothing worked.
 On Saturday, I worked approximately six to eight hours to fix every single bug and implement the basic UI and game mechanics.
 On Sunday, I worked five to six hours to implement the audio, sound effects, animations, and the short clip at the end.
