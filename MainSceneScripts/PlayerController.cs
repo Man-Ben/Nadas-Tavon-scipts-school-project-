@@ -1,3 +1,12 @@
+/*
+This class defines the character's behaviour.
+When the game starts, the AnimationPlayer method plays the Running animation.
+When the player presses the Space key, the Jump method is called.
+When the player collides with a triggered game object, the game ends. 
+If this game object is an abyss, the character will fall off the screen.
+*/
+
+
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
