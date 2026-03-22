@@ -1,3 +1,7 @@
+/*
+This script defines the behaviour of the obstacles.
+*/
+
 using UnityEngine;
 
 public class MoveLeft : MonoBehaviour
