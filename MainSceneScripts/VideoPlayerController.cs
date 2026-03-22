@@ -1,3 +1,8 @@
+/*
+At the end, this script will launch a short video.
+*/
+
+
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
